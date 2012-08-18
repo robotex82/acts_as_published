@@ -1,4 +1,11 @@
 de:
-  true: Ja
-  false: Nein
+  acts_as_published:
+    actions:
+      publish: Veröffentlichen
+      unpublish: Zurückziehen
+    notices:
+      published: %{name} ist ab jetzt öffentlich sichtbar.  
+      unpublished: %{name} ist ab jetzt nicht mehr öffentlich sichtbar.   
+  'true': Ja
+  'false': Nein
 

@@ -1,3 +1,10 @@
 en:
-  true: yes
-  false: no
+  acts_as_published:
+    actions:
+      publish: Publish
+      unpublish: Unpublish
+    notices:
+      published: %{name} has been published.  
+      unpublished: %{name} has been unpublished.   
+  'true': yes
+  'false': no
