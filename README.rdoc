@@ -1,1 +1,34 @@
-# Acts as published
+== Acts as published
+
+Gives you a boolean reader/writer for a published_at (timestamp) column.
+
+== Installation
+
+Add it to your Gemfile:
+
+  gem 'acts_as_published'
+  
+Install your bundle:
+
+  > bundle install
+  
+== Usage
+
+You need a published_at:timestamp column
+
+In your model:
+
+class Post < ActiveRecord::Base
+  # acts as published
+  include ActsAsPublished::ActiveRecord
+  acts_as_published
+  
+  # ...
+end  
+
+== Scopes
+
+You get following scopes:
+
+  Post.published
+  Post.unpublished  

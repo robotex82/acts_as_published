@@ -15,6 +15,11 @@ module ActsAsPublished
           t = self.arel_table
           where(t[:published_at].not_eq(nil))
         end
+        
+        def unpublished
+          t = self.arel_table
+          where(t[:published_at].eq(nil))
+        end
       end
     end
     
