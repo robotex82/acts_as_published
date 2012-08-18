@@ -9,6 +9,13 @@ module ActsAsPublished
         end
       end
       
+      batch_action :toggle_published do |selection|
+        active_admin_config.resource_class.find(selection).each do |item|
+          item.toggle_published!
+        end
+        redirect_to :back
+      end 
+      
       member_action :toggle_published do
         resource.toggle_published!       
         if resource.published?
