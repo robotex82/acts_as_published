@@ -4,7 +4,7 @@ en:
       publish: Publish
       unpublish: Unpublish
     notices:
-      published: %{name} has been published.  
-      unpublished: %{name} has been unpublished.   
+      published: "%{name} has been published."
+      unpublished: "%{name} has been unpublished."
   'true': yes
   'false': no
