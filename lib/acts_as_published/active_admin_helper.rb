@@ -27,16 +27,23 @@ module ActsAsPublished
     end
     
     def acts_as_published_columns
+      column :visible? do |resource|
+        I18n.t(resource.visible?.to_s)
+      end
       column :published do |resource|
         I18n.t(resource.published.to_s)
       end
+      column :published_at
+      column :unpublished_at
     end
     
     def acts_as_published_rows
+      row :visible?
       row :published do |resource|
         I18n.t(resource.published.to_s)
       end
       row :published_at
+      row :unpublished_at
     end    
   end
 end  

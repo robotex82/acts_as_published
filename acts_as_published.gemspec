@@ -23,7 +23,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency "sqlite3"
   
   # Development Server
-  s.add_development_dependency "thin"
+  s.add_development_dependency "puma"
   
   # Documentation
   s.add_development_dependency "yard"
@@ -37,10 +37,11 @@ Gem::Specification.new do |s|
   s.add_development_dependency "rspec-rails", "~> 2.0"
   s.add_development_dependency "factory_girl_rails", "~> 1.0"
   s.add_development_dependency 'ffaker'  
-#  s.add_development_dependency 'guard-rails'
+  s.add_development_dependency 'guard-rails'
   s.add_development_dependency 'guard-rspec'
   s.add_development_dependency 'guard-bundler'  
   s.add_development_dependency "shoulda-matchers"
+  s.add_development_dependency "database_cleaner"
   
   # Example data generation
   s.add_development_dependency 'forgery', '0.5.0'  

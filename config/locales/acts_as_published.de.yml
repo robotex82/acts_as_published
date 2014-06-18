@@ -1,4 +1,6 @@
 de:
+  attributes:
+    visible?: sichtbar?
   acts_as_published:
     actions:
       publish: Veröffentlichen

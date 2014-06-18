@@ -1,6 +1,6 @@
-source "http://rubygems.org"
+source "https://rubygems.org"
 
-# Declare your gem's dependencies in ecm_pictures.gemspec.
+# Declare your gem's dependencies in acts_as_published.gemspec.
 # Bundler will treat runtime dependencies like base dependencies, and
 # development dependencies will be added by default to the :development group.
 gemspec
@@ -19,10 +19,15 @@ gem "jquery-rails"
 # Edge active admin
 group :development, :test do
   # Edge Active Admin
-  gem 'activeadmin', :git => 'git://github.com/gregbell/active_admin.git'
+  gem 'activeadmin', :git => 'https://github.com/gregbell/active_admin.git'
 
-  # Patched guard rails
-  gem 'guard-rails',  :git => 'git://github.com/robotex82/guard-rails.git', :branch => 'better-engine-support'
+  platforms :ruby do
+    gem "therubyracer" 
+  end
+  
+  platforms :jruby do
+    gem "therubyrhino" 
+  end
 end
 
 unless ENV['TRAVIS_RUBY_VERSION'].nil?
