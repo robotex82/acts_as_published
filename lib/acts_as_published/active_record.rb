@@ -6,7 +6,6 @@ module ActsAsPublished
         include InstanceMethods
       end  
       
-      base.validates :published, :presence => true
       base.validates :published_at, :presence => true, :if => :unpublished_present
       base.validates :unpublished_at, :date => { :on_or_after => :published_at }, :if => :published_and_unpublished_present 
     end  
