@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Post do
   context 'validations' do
-    it { should validate_presence_of :published }
+    it { should ensure_inclusion_of(:published).in_array([ true, false ]) }
     context 'with a unpublished_at set' do
       before :each do
         subject.unpublished_at = 1.day.from_now
