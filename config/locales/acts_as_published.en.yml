@@ -1,4 +1,9 @@
 en:
+  active_admin:
+    scopes:
+      all: All
+      published: Published
+      unpublished: Not published
   acts_as_published:
     actions:
       publish: Publish

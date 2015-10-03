@@ -18,14 +18,43 @@ You need a published_at:timestamp column
 
 In your model:
 
-class Post < ActiveRecord::Base
-  # acts as published
-  include ActsAsPublished::ActiveRecord
-  acts_as_published
-  
-  # ...
-end  
+  class Post < ActiveRecord::Base
+    # acts as published
+    include ActsAsPublished::ActiveRecord
+    acts_as_published
+    
+    # ...
+  end  
 
+== ActiveAdmin integration
+
+  ActiveAdmin.register Post do
+    form do |f|
+      f.inputs do
+        f.input :title
+        # ...    
+        f.input :published, :as => :boolean
+        # ...    
+      end
+    end
+
+    index do
+      column :title
+      # ...
+      acts_as_published_columns
+      # ...
+    end
+
+    show do
+      attributes_table do
+        row :title
+        # ...
+        acts_as_published_rows
+        # ...
+      end
+    end  
+  end if defined?(ActiveAdmin)
+  
 == Scopes
 
 You get following scopes:
