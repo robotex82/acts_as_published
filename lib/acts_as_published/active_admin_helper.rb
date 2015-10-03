@@ -3,9 +3,9 @@ module ActsAsPublished
     def acts_as_published_actions
       action_item :only => :show do
         if resource.published?
-          link_to I18n.t('acts_as_published.actions.unpublish'), self.send(:"toggle_published_admin_#{resource.class.model_name.underscore.gsub("/", "_")}_path", resource)      
+          link_to I18n.t('acts_as_published.actions.unpublish'), self.send(:"toggle_published_#{active_admin_config.namespace.name}_#{resource.class.model_name.underscore.gsub("/", "_")}_path", resource)      
         else
-          link_to I18n.t('acts_as_published.actions.publish'), self.send(:"toggle_published_admin_#{resource.class.model_name.underscore.gsub("/", "_")}_path", resource)
+          link_to I18n.t('acts_as_published.actions.publish'), self.send(:"toggle_published_#{active_admin_config.namespace.name}_#{resource.class.model_name.underscore.gsub("/", "_")}_path", resource)
         end
       end
       
