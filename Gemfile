@@ -1,4 +1,4 @@
-source "http://rubygems.org"
+source "https://rubygems.org"
 
 # Declare your gem's dependencies in ecm_pictures.gemspec.
 # Bundler will treat runtime dependencies like base dependencies, and
@@ -20,9 +20,6 @@ gem "jquery-rails"
 group :development, :test do
   # Edge Active Admin
   gem 'activeadmin', :git => 'git://github.com/gregbell/active_admin.git'
-
-  # Patched guard rails
-  gem 'guard-rails',  :git => 'git://github.com/robotex82/guard-rails.git', :branch => 'better-engine-support'
 end
 
 unless ENV['TRAVIS_RUBY_VERSION'].nil?

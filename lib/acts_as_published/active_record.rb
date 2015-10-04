@@ -9,7 +9,7 @@ module ActsAsPublished
 
     module ClassMethods
       def acts_as_published
-        attr_accessible :published # , :published_at
+        attr_accessible :published if Rails.version < '4'
 
         def published
           t = self.arel_table
@@ -30,29 +30,33 @@ module ActsAsPublished
       alias :published? :published
 
       def published=(published)
-        if ::ActiveRecord::ConnectionAdapters::Column
-             .value_to_boolean(published)
-          self.published_at = Time.zone.now # .to_date
-          # write_attribute(:published_at, Time.zone.now) # .to_date
+        if Rails.version < '4.2'
+          boolean_published = ::ActiveRecord::ConnectionAdapters::Column.value_to_boolean(published)
         else
-          self.published_at = nil
-          # write_attribute(:published_at, nil)
+          boolean_published = ::ActiveRecord::Type::Boolean.new.type_cast_from_user(published)
         end
+        self.published_at = boolean_published ? Time.zone.now : nil
       end
 
       def toggle_published
         if self.published_at.nil?
-          self.published_at = Time.zone.now # .to_date
-          # write_attribute(:published_at, Time.zone.now) # .to_date
+          self.published_at = Time.zone.now
         else
           self.published_at = nil
-          # write_attribute(:published_at, nil)
         end
       end
 
       def toggle_published!
         toggle_published
         save!
+      end
+
+      def publish
+        self.published = true
+      end
+
+      def unpublish
+        self.published = false
       end
     end
   end

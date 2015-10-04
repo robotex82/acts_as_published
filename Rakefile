@@ -36,3 +36,5 @@ end
 
 
 task :default => :test
+
+require 'rails/dummy/tasks'
