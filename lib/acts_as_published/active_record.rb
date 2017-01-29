@@ -33,7 +33,7 @@ module ActsAsPublished
         if Rails.version < '4.2'
           boolean_published = ::ActiveRecord::ConnectionAdapters::Column.value_to_boolean(published)
         else
-          boolean_published = ::ActiveRecord::Type::Boolean.new.type_cast_from_user(published)
+          boolean_published = ::ActiveRecord::Type::Boolean.new.type_cast_for_schema(published)
         end
         self.published_at = boolean_published ? Time.zone.now : nil
       end
