@@ -1,4 +1,9 @@
 de:
+  active_admin:
+    scopes:
+      all: Alle
+      published: Veröffentlich
+      unpublished: Unveröffentlicht
   component:
     table:
       header_cells:

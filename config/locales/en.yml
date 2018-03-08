@@ -4,12 +4,20 @@ en:
       all: All
       published: Published
       unpublished: Not published
+  component:
+    table:
+      header_cells:
+        batch_actions:
+          publish: Publish
+          unpublish: Unpublish
   acts_as_published:
     actions:
       publish: Publish
       unpublish: Unpublish
     notices:
       published: "%{name} has been published."
+      published_many: "%{names} have been published."
       unpublished: "%{name} has been unpublished."
+      unpublished_many: "%{names} have been unpublished."
   'true': yes
   'false': no
