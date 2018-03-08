@@ -15,14 +15,3 @@ gem "jquery-rails"
 
 # To use debugger
 # gem 'debugger'
-
-# Edge active admin
-group :development, :test do
-  # Edge Active Admin
-  gem 'activeadmin', :git => 'git://github.com/gregbell/active_admin.git'
-end
-
-unless ENV['TRAVIS_RUBY_VERSION'].nil?
-  gem 'pg'
-  gem 'mysql2'
-end

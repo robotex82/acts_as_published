@@ -1,16 +1,19 @@
 de:
-  active_admin:
-    scopes:
-      all: Alle
-      published: Veröffentlicht
-      unpublished: Nicht veröffentlicht
+  component:
+    table:
+      header_cells:
+        batch_actions:
+          publish: Veröffentlichen
+          unpublish: Zurückziehen
   acts_as_published:
     actions:
       publish: Veröffentlichen
       unpublish: Zurückziehen
     notices:
       published: "%{name} ist ab jetzt öffentlich sichtbar."
+      published_many: "%{names} sind ab jetzt öffentlich sichtbar."
       unpublished: "%{name} ist ab jetzt nicht mehr öffentlich sichtbar."
+      unpublished_many: "%{names} sind ab jetzt nicht mehr öffentlich sichtbar."
   'true': Ja
   'false': Nein
 

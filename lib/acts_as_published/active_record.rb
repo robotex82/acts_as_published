@@ -9,7 +9,7 @@ module ActsAsPublished
 
     module ClassMethods
       def acts_as_published
-        attr_accessible :published if Rails.version < '4'
+        attr_accessible :published, :published_at if Rails.version < '4'
 
         def published
           t = self.arel_table
@@ -30,11 +30,19 @@ module ActsAsPublished
       alias :published? :published
 
       def published=(published)
-        if Rails.version < '4.2'
-          boolean_published = ::ActiveRecord::ConnectionAdapters::Column.value_to_boolean(published)
-        else
-          boolean_published = ::ActiveRecord::Type::Boolean.new.type_cast_for_schema(published)
-        end
+        boolean_published = case
+          when Rails.version < '4.2'
+            ::ActiveRecord::ConnectionAdapters::Column.value_to_boolean(published)
+          when Rails.version < '5.0'
+            ::ActiveRecord::Type::Boolean.new.type_cast_for_schema(published)
+          else
+            ::ActiveRecord::Type::Boolean.new.cast(published)
+          end
+        # if Rails.version < '4.2'
+        #   boolean_published = ::ActiveRecord::ConnectionAdapters::Column.value_to_boolean(published)
+        # else
+        #   boolean_published = ::ActiveRecord::Type::Boolean.new.type_cast_for_schema(published)
+        # end
         self.published_at = boolean_published ? Time.zone.now : nil
       end
 
@@ -57,6 +65,16 @@ module ActsAsPublished
 
       def unpublish
         self.published = false
+      end
+
+      def publish!
+        publish
+        save!
+      end
+
+      def unpublish!
+        unpublish
+        save!
       end
     end
   end

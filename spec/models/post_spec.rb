@@ -1,16 +1,30 @@
 require 'spec_helper'
 
-describe Post do
-  it { should validate_presence_of :title }
-  it { should validate_uniqueness_of :title }
+RSpec.describe Post, type: :model do
+  it { expect(subject).to validate_presence_of(:title) }
+  it { expect(subject).to validate_uniqueness_of(:title) }
 
-  it { expect(Post.new).to respond_to(:published) }
+  it { expect(subject).to respond_to(:published) }
 
-  it { expect(Post.new.published).to be_falsey }
-  it { post = Post.new(published_at: Time.zone.now); expect(post.published).to be_truthy }
-  it { post = Post.new; post.toggle_published; expect(post.published).to be_truthy }
-  it { post = Post.new; post.published = true; expect(post.published).to be_truthy }
-  it { post = Post.new; post.published = false; expect(post.published).to be_falsey }
-  it { post = Post.new; post.publish; expect(post.published).to be_truthy }
-  it { post = Post.new(published_at: Time.zone.now); post.unpublish; expect(post.published).to be_falsey }
+  describe 'defaults' do
+    subject { described_class.new }
+
+    it { expect(subject.published).to be_falsey }
+  end
+
+  describe 'setters' do
+    subject { described_class.new }
+
+    it { subject.toggle_published; expect(subject.published).to be_truthy }
+    it { subject.published = true; expect(subject.published).to be_truthy }
+    it { subject.published = false; expect(subject.published).to be_falsey }
+    it { subject.publish; expect(subject.published).to be_truthy }
+  end
+
+  describe 'initialization with published_at' do
+    subject { described_class.new(published_at: Time.zone.now) }
+    
+    it { expect(subject.published).to be_truthy }
+    it { subject.unpublish; expect(subject.published).to be_falsey }
+  end
 end

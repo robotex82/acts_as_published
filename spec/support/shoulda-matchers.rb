@@ -10,4 +10,4 @@ Shoulda::Matchers.configure do |config|
     with.library :active_model
     with.library :action_controller
   end
-end
+end if Shoulda::Matchers.respond_to?(:configure)
